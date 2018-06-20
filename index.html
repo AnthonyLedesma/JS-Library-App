@@ -2,52 +2,54 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js">
-    
+    <title>JavaScript Library App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
   </head>
   <body>
-    <div class="uk-flex uk-height-medium uk-background-muted uk-margin uk-text-center" id="formHide" style="display: none;">
-            <form>
-                    <fieldset class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body">
+    <div id="formHide" style="display: none;" class="uk-card uk-card-secondary">
+            <form class="uk-card-body">
+                    <fieldset class="uk-fieldset">
                 
-                        <legend class="uk-legend">Add A Book To Library</legend>
+                        <legend class="uk-legend uk-card-title">Add A Book To Library</legend>
                 
-                        <div class="uk-margin uk-child-width-auto uk-grid">
+                        <div class="uk-margin">
                             <label><input class="uk-input" type="text" id='bookTitle' placeholder="Please type book title">Please type book title.</label>
                         </div>
-                
-                        <div class="uk-margin uk-child-width-auto uk-grid">
-                            <select class="uk-select" id="bookSelect">
-                                <option value="default">Have you read this book?</option>
-                                <option value="true">Yes, I have read the book</option>
-                                <option value="false">No, I have not read the book</option> 
-                            </select>
-                        </div>
-                
-                    
-                
-                        <div class="uk-margin uk-child-width-auto uk-grid">
-                            <label><input class="uk-textarea" id='bookAuthor' placeholder="Please type book author" /> Please type book author</label>
+
+                        <div class="uk-margin">
+                            <label><input class="uk-input" id='bookAuthor' placeholder="Please type book author" /> Please type book author</label>
                             
                         </div>
-                
-                        <div class="uk-margin uk-child-width-auto uk-grid">
-                            <label><input type="number" class="uk-textarea" id='bookPages' placeholder="Please type the number of book pages" min='1' max='10000' /> Please type the number of book pages</label>
+
+                        <div class="uk-margin">
+                            <label><input type="number" class="uk-input" id='bookPages' placeholder="Please type the number of book pages" min='1' max='10000' /> Please type the number of book pages</label>
                         </div>
+
+                        <div class="uk-margin">
+                                <select class="uk-select" id="bookSelect">
+                                    <option value="default">Have you read this book?</option>
+                                    <option value="true">Yes, I have read the book</option>
+                                    <option value="false">No, I have not read the book</option> 
+                                </select>
+                            </div>
                 
                     </fieldset>
-                    <input type='button' value='Submit' id='submitBookForm'>
+                    <input type='button' value='Submit' id='submitBookForm' class="uk-align-center">
                 </form>
     </div>
-    <div id="books"></div>
+    <div id="books">
+        
+    </div>
     
-    <input type='button' value='New Book' id="newBookButton"/>
+    <input type='button' value='New Book' id="newBookButton" class="uk-align-center"/>
       
     <script src='./app.js'></script>
     <script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
   </body>
 </html>

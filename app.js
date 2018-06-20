@@ -13,7 +13,8 @@ function Book(title, author, pages, hasBeenRead) {
     this.author = author
     this.pages = pages
     this.beenRead = hasBeenRead ? "I have read this book." : "I have not read this book.";
-    }
+}
+
 
 let WarAndPeace = new Book('War and Peace', 'Leo Tolstoy', 1225, true);
 myLibrary.push(WarAndPeace);
@@ -40,10 +41,26 @@ function addBookToLibrary() {
 }
 
 function render(myLibrary) {
+    //The following is descruction of DOM Nodes
+    while (bookDiv.firstChild) {
+        bookDiv.removeChild(bookDiv.firstChild);
+    }
+
+    //The following is creation of DOM Nodes
     myLibrary.forEach(function(element){
+        let div = document.createElement('div');
+        div.setAttribute('class', 'uk-card uk-card-primary uk-card-body uk-width-medium uk-align-center')
+
+        let h3 = document.createElement('h3');
+        h3.setAttribute('class', 'uk-card-title');
+        h3.innerText = `${element.title}`;
+
         let p = document.createElement('p');
-        p.innerText= `${element.title}  by ${element.author}, with a length of ${element.pages} pages, ${element.beenRead}`;
-        bookDiv.appendChild(p);
+        p.innerText= `Written by ${element.author}, with a length of ${element.pages} pages, ${element.beenRead}`;
+        div.appendChild(h3);
+        div.appendChild(p);
+
+        bookDiv.appendChild(div);
     })
     $('#formHide').toggle();
 }
@@ -58,12 +75,4 @@ function checkForm() {
     else {return true;}
 }
 
-// function checkObject(obj) {
-//     console.log(obj.formTitle);
-//     if (typeof obj.formTitle !== "string") return false;
-//     if (typeof obj.formAuthor !== "String") return false;
-//     if (typeof obj.formPages !== "Number") return false;
-//     if (obj.formBeenRead === 'default') return false;
-//     return true;
-// }
 
