@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.27.5/js/uikit.min.js">
+    
+  </head>
+  <body>
+    <div class="uk-flex uk-height-medium uk-background-muted uk-margin uk-text-center">
+            <form>
+                    <fieldset class="uk-margin-auto uk-margin-auto-vertical uk-width-1-2@s uk-card uk-card-default uk-card-body">
+                
+                        <legend class="uk-legend">Add A Book To Library</legend>
+                
+                        <div class="uk-margin">
+                            <label><input class="uk-input" type="text" id='bookTitle' placeholder="Please type book title">Please type book title.</label>
+                        </div>
+                
+                        <div class="uk-margin">
+                            <select class="uk-select">
+                                <option value="default">Have you read this book?</option>
+                                <option value="yesRead">Yes, I have read the book</option>
+                                <option value="notRead">No, I have not read the book</option> 
+                            </select>
+                        </div>
+                
+                    
+                
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><textarea class="uk-textarea" id='bookAuthor' placeholder="Please type book author"></textarea> Please type book author</label>
+                            
+                        </div>
+                
+                        <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                            <label><textarea class="uk-textarea" id='bookPages' placeholder="Please type the number of book pages"></textarea> Please type the number of book pages</label>
+                        </div>
+                
+                    </fieldset>
+                </form>
+    </div>
+    <div id="books"></div>
+    <input type='submit' value='Submit' id='submitBookForm'>
+      
+    <script src='./app.js'></script>
+  </body>
+</html>
