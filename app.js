@@ -37,7 +37,7 @@ document.getElementById('submitBookForm').addEventListener('click',function() {
 
 document.getElementById('newBookButton').addEventListener('click', function() {
     $('#formHide').toggle();
-    $('#newBookButton').hide();
+    $('#newBookButton').toggle();
 })
 
 function addBookToLibrary() {
@@ -47,6 +47,8 @@ function addBookToLibrary() {
         myLibrary.push(bookObj);
         render(myLibrary);
         $('#newBookButton').show();
+        //$('#formHide').toggle();
+
     } else {
         console.log(checkForm());
     }
@@ -54,7 +56,10 @@ function addBookToLibrary() {
 
 function render(myLibrary) {
     let classForCardDivs = "uk-card uk-card-primary uk-card-hover uk-card-body uk-light uk-margin";
-    let classForMasterDivs = "uk-grid-small uk-child-width-expand@s uk-text-center";
+    let classForMasterDivs = "uk-grid-small uk-child-width-expand@s uk-text-center uk-flex";
+    let classForDeleteCardButton = "uk-button uk-button-danger uk-flex-inline";
+    let classForReadCardButton = "uk-button uk-button-primary uk-flex-inline";
+    let classForCardButtonHolder = "uk-flex-inline";
 
 
     iterateSteps = 0;
@@ -65,55 +70,71 @@ function render(myLibrary) {
     }
     let firstEmptyDiv = document.createElement('div');
     firstEmptyDiv.setAttribute('id', 0);
-    firstEmptyDiv.setAttribute('style', 'display: flex;');
     firstEmptyDiv.setAttribute('class', classForMasterDivs);
     masterBooks.appendChild(firstEmptyDiv);
 
     //The following is creation of DOM Nodes
-    myLibrary.forEach(function(element){
+    myLibrary.forEach(function(element, index){
+        //Step/div iterator - Seperates cards into max 5 columns per row.
         if (iterateSteps >= 5) {
-            iterateSteps = 0;
+            iterateSteps = 1;
             iterateDivs++;
             let div = document.createElement('div');
             div.setAttribute('id', iterateDivs);
-            div.setAttribute('style','display: flex;');
             div.setAttribute('class', classForMasterDivs);
             masterBooks.appendChild(div);
+            //console.log("steps are iterated ")
         } else {
             iterateSteps++;
         }
+
+        let buttonHolder = document.createElement('div');
+        buttonHolder.setAttribute('class',classForCardButtonHolder);
+        
+        let deleteButton = document.createElement('div');
+        deleteButton.innerText = "Delete This Book";
+        deleteButton.setAttribute('class', classForDeleteCardButton);
+        deleteButton.addEventListener('click', function() {
+            $(`div[data-index='${index}']`).remove();
+            myLibrary.splice(index, 1);
+            render(myLibrary);
+        })
+        
+        
 
         let div = document.createElement('div');
         div.setAttribute('class', classForCardDivs);
         div.setAttribute('id', iterateDivs);
 
-        let buttonBanner = document.createElement('div');
-        buttonBanner.setAttribute('class', 'uk-card-badge uk-label');
-        if (element.beenRead === "I have read this book.") {buttonBanner.innerText = "Read";} else {buttonBanner.innerText = "!Read";}
-        buttonBanner.addEventListener('click', function() {
+        let readButton = document.createElement('div');
+        readButton.setAttribute('class', classForReadCardButton);
+        if (element.beenRead === "I have read this book.") {readButton.innerText = "Read";} else {readButton.innerText = "!Read";}
+        readButton.addEventListener('click', function() {
             element.changeReadStatus();
-            if (element.beenRead === "I have read this book.") {buttonBanner.innerText = "Read";}  else {buttonBanner.innerText = "!Read";}
+            if (element.beenRead === "I have read this book.") {readButton.innerText = "Read";}  else {readButton.innerText = "!Read";}
             p.innerText= `Written by ${element.author}, with a length of ${element.pages} pages, ${element.beenRead}`;
         })
 
-        
+        buttonHolder.appendChild(readButton);
+        buttonHolder.appendChild(deleteButton);
 
 
-        let h3 = document.createElement('h3');
-        h3.setAttribute('class', 'uk-card-title');
-        h3.innerText = `${element.title}`;
+        let h2 = document.createElement('h2');
+        h2.setAttribute('class', 'uk-card-title');
+        h2.innerText = `${element.title}`;
 
         let p = document.createElement('p');
         p.innerText= `Written by ${element.author}, with a length of ${element.pages} pages, ${element.beenRead}`;
-        div.appendChild(h3);
-        div.appendChild(buttonBanner);
+        div.appendChild(h2);
         div.appendChild(p);
+        div.appendChild(buttonHolder);
 
         let emptyDivWrapperForCards = document.createElement('div');
         emptyDivWrapperForCards.appendChild(div);
+        emptyDivWrapperForCards.setAttribute('data-index', index);
         document.getElementById(iterateDivs).appendChild(emptyDivWrapperForCards);
     })
-    $('#formHide').toggle();
+    //$('#formHide').toggle();
 }
 
 function checkForm() {
