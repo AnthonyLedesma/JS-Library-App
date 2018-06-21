@@ -30,7 +30,7 @@ function Book(title, author, pages, hasBeenRead) {
     }
 }
 
-
+// demo book object
 //let WarAndPeace = new Book('War and Peace', 'Leo Tolstoy', 1225, true);
 //myLibrary.push(WarAndPeace);
 
@@ -100,6 +100,7 @@ function render(myLibrary) {
         deleteButton.addEventListener('click', function() {
             $(`div[data-index='${index}']`).remove();
             myLibrary.splice(index, 1);
+            localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
             render(myLibrary);
         })
         
@@ -149,5 +150,7 @@ function checkForm() {
     else if (formBeenRead.value === 'default') {return "Must Select Book-Is-Read Status";}
     else {return true;}
 }
+
+render(myLibrary);
 
 
