@@ -1,6 +1,6 @@
 # JS-Library-App
 
-![Library App Screenshot](/Screenshot1.png?raw=true "Library App Screenshot")
+![Library App Screenshot](/Screenshot-uikit.png?raw=true "Library App Screenshot")
 
 
 ### JS Library App ###
@@ -12,3 +12,7 @@
 -Render function will display array into HTML elements visible in browser.
 
 -formCheck function contains logic to find invalid values being passed to form.
+
+-Application stores books in persistant localStorage in browser.
+
+-Delete button added for each card element.
