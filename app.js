@@ -1,7 +1,10 @@
-
 let myLibrary = [];
+if (localStorage.getItem('myLibrary')) {
+    myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+} else {
+    myLibrary = [];
+}
 
-//let bookDiv = document.getElementById('books');
 
 let formTitle = document.getElementById('bookTitle');
 let formAuthor = document.getElementById('bookAuthor');
@@ -28,8 +31,8 @@ function Book(title, author, pages, hasBeenRead) {
 }
 
 
-let WarAndPeace = new Book('War and Peace', 'Leo Tolstoy', 1225, true);
-myLibrary.push(WarAndPeace);
+//let WarAndPeace = new Book('War and Peace', 'Leo Tolstoy', 1225, true);
+//myLibrary.push(WarAndPeace);
 
 document.getElementById('submitBookForm').addEventListener('click',function() {
     addBookToLibrary();
